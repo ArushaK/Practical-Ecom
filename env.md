@@ -1,0 +1,7 @@
+# All Environment variables for the server side code
+
+NODE_ENV = development
+
+PORT = 4200
+
+MONGO_URI = `mongodb+srv://arusha7:arusha7@cluster0.5pbhmur.mongodb.net/?retryWrites=true&w=majority`
