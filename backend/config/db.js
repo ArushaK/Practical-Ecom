@@ -3,13 +3,9 @@ const mongoose = require("mongoose");
 const connectDB = () => {
   mongoose
     .connect(process.env.MONGO_URI)
-    .then((res) =>
-      console.log(
-        `MongoDB Connected: ${res.connection.host}`.cyan.underline.bold
-      )
-    )
+    .then((res) => console.log(`MongoDB Connected: ${res.connection.host}`))
     .catch((err) => {
-      console.error(`Error: ${err.message}`.red.underline.bold);
+      console.error(`Error: ${err.message}`);
       process.exit(1);
     });
 };
