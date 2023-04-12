@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Row,
   Col,
@@ -13,8 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import { addItem, removeItem } from "../actions/cartActions";
 
-const CartPage = ({ match, location, history }) => {
-  const productID = match.params.id;
+const CartPage = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const productID = params.id;
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const dispatch = useDispatch();
 
@@ -31,7 +34,7 @@ const CartPage = ({ match, location, history }) => {
     dispatch(removeItem(id));
   };
   const handleCheckout = (e) => {
-    history.push("/login?redirect=shipping");
+    navigate("/login?redirect=shipping");
   };
 
   return (
@@ -95,7 +98,7 @@ const CartPage = ({ match, location, history }) => {
               </h2>
               ${" "}
               {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 2)
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>

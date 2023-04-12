@@ -16,6 +16,10 @@ const productSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
+    _id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -63,4 +67,4 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = new mongoose.model("Products", productSchema);

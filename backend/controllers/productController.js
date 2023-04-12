@@ -6,6 +6,7 @@ const Product = require("../models/ProductModel");
 // @access PUBLIC
 const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
+  console.log(products);
   res.json(products);
 });
 

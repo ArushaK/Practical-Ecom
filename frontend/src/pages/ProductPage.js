@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   Row,
   Col,
@@ -14,19 +14,22 @@ import { listProductDetails } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-const ProductPage = ({ history, match }) => {
+const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const params = useParams();
+  const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
 
   useEffect(() => {
-    dispatch(listProductDetails(match.params.id));
-  }, [match, dispatch]);
+    console.log(params);
+    dispatch(listProductDetails(params.id));
+  }, [params.id, dispatch]);
 
   const handleSubmit = (e) => {
-    history.push(`/cart/${match.params.id}?qty=${quantity}`);
+    navigate(`/cart/${params.id}?qty=${quantity}`);
   };
 
   return (
