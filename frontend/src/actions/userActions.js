@@ -7,6 +7,7 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAILURE,
 } from "../constants/userConstants";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import axios from "axios";
 
 export const loginUser = (email, password) => async (dispatch) => {
@@ -41,6 +42,11 @@ export const loginUser = (email, password) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+
+  localStorage.removeItem("redirectLogin");
+  localStorage.removeItem("cartItems");
+  dispatch({ type: USER_LOGOUT });
+  dispatch({ type: ORDER_CREATE_RESET });
   dispatch({ type: USER_LOGOUT });
 };
 
