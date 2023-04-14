@@ -54,7 +54,23 @@ const RegisterPage = () => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          alignItems: "center",
+        }}
+      >
+        <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/login")}>
+          Sign In
+        </h1>
+        <h1
+          style={{ marginLeft: "1em", cursor: "pointer" }}
+          onClick={() => navigate("/register")}
+        >
+          Sign Up
+        </h1>
+      </div>
       {message && <Message variant="warning">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading ? (
@@ -142,14 +158,14 @@ const RegisterPage = () => {
           </Button>
         </Form>
       )}
-      <Row>
+      {/* <Row>
         <Col className="mt-1">
           Have an Account?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
             Login
           </Link>
         </Col>
-      </Row>
+      </Row> */}
     </FormContainer>
   );
 };

@@ -3,6 +3,7 @@ const {
   authUser,
   getUserProfile,
   registerUser,
+  getUserById,
 } = require("../controllers/userController");
 const protectRoute = require("../middleware/authMiddleware");
 
@@ -22,5 +23,11 @@ router.route("/login").post(authUser);
 // @route GET /api/users/profile
 // @access PRIVATE
 router.route("/profile").get(protectRoute, getUserProfile);
+
+//
+// @desc Delete a user, get a user by id, update the user
+// @route GET /api/users/:id
+// @access PRIVATE
+router.route("/:id").get(protectRoute, getUserById);
 
 module.exports = router;

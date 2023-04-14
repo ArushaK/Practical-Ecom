@@ -77,4 +77,16 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { authUser, getUserProfile, registerUser };
+// @desc get user by ID
+// @route GET /api/users/:id
+// @access PRIVATE/ADMIN
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  if (user) res.json(user);
+  else {
+    res.status(404);
+    throw new Error("User does not exist");
+  }
+});
+
+module.exports = { authUser, getUserProfile, registerUser, getUserById };

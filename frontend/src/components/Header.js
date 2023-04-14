@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logoutUser } from "../actions/userActions";
@@ -8,9 +8,16 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
+  const cart = useSelector((state) => state.cart);
   const { userInfo } = userLogin;
+  const { cartItems } = cart;
 
   const [show, setShow] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(cartItems.reduce((acc, item) => acc + item.qty, 0));
+  }, [cartItems]);
 
   const handleDropdown = (e) => {
     show ? setShow(false) : setShow(!show);
@@ -42,7 +49,38 @@ const Header = () => {
             <Nav className="ms-auto">
               <Link to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> Cart
+                  {count ? (
+                    <div
+                      style={{
+                        position: "absolute",
+                        height: "1.2em",
+                        width: "1.2em",
+                        border: "none",
+                        margin: "0",
+                        padding: "0",
+                        background: "red",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        marginTop: "-0.5em",
+                        marginLeft: "1.2em",
+                        fontSize: "0.7em",
+                        fontWeight: "bold",
+                        outline: "none",
+                      }}
+                    >
+                      {count}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <i
+                    style={{ fontSize: "1.2em" }}
+                    className="fas fa-shopping-cart"
+                  ></i>
+                  Cart
                 </Nav.Link>
               </Link>
               {userInfo ? (
@@ -62,7 +100,11 @@ const Header = () => {
               ) : (
                 <Link to="/login" variant="primary">
                   <Nav.Link>
-                    <i className="fas fa-user"></i> Sign In
+                    <i
+                      style={{ fontSize: "1.2em" }}
+                      className="fas fa-user"
+                    ></i>
+                    Sign In
                   </Nav.Link>
                 </Link>
               )}
