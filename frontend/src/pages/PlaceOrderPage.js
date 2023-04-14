@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import CheckoutStatus from "../components/CheckoutStatus";
 import Message from "../components/Message";
 import { createOrder } from "../actions/orderActions";
+import { CART_RESET } from "../constants/cartConstants";
 
 const PlaceOrderPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const PlaceOrderPage = () => {
 
   useEffect(() => {
     if (success) {
+      dispatch({ type: CART_RESET, payload: shippingAddress });
       navigate(`/order/${order._id}`);
     }
   }, [success, navigate]);
