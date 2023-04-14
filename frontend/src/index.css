@@ -11,6 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.form-heading {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -1em;
+  margin-bottom: 1.5em;
+  width: 35em;
+}
+
+.form-inner-container {
+  width: 35em;
+  margin: 1.5em 0;
+  padding: 1em;
+  padding-top: 0;
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 20%);
+}
+
+.form-heading h1 {
+  width: 50%;
+  text-align: center;
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid ghostwhite;
+  border-top: 0;
+  transition: all 0.2s ease-in-out;
+}
+
 main {
   min-height: 85vh;
 }
@@ -29,4 +59,73 @@ h2 {
 
 .rating span {
   margin: 0.1rem;
+}
+
+/* Carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item:active {
+  display: flex;
+}
+
+.carousel-inner {
+  text-align: center;
+}
+
+.carousel-caption {
+  font-size: large;
+  font-size: 1.2em;
+  padding: 0;
+  margin-bottom: -0.5em;
+}
+
+.carousel img {
+  height: 30vh;
+
+  border-radius: 50%;
+  width: 30vh;
+  object-fit: cover;
+  margin: 0.5em auto 2.5em auto;
+}
+
+.carousel a {
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
+}
+@media (max-width: 430px) {
+  .carousel {
+    display: none;
+  }
+}
+
+.footer-icons {
+  width: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footer-icons a {
+  color: #212529;
+}
+.footer-icon {
+  font-size: 1.5em;
+  line-height: 1em;
+  object-fit: cover;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.footer-icon:hover {
+  transform: translateY(-20%);
+}
+
+.footer-copyright {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1em;
 }

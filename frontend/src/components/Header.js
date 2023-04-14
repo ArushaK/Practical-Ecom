@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logoutUser } from "../actions/userActions";
 import { listProducts } from "../actions/productActions";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Header = () => {
           display: show ? "block" : "none",
           minWidth: "100%",
           height: "100%",
+          zIndex: "100",
           position: "absolute",
         }}
         onClick={() => setShow(false)}
@@ -46,6 +48,9 @@ const Header = () => {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            {/* <Routes> */}
+            <SearchBox />
+            {/* </Routes> */}
             <Nav className="ms-auto">
               <Link to="/cart">
                 <Nav.Link>
@@ -53,25 +58,32 @@ const Header = () => {
                     <div
                       style={{
                         position: "absolute",
-                        height: "1.2em",
-                        width: "1.2em",
+                        height: "1em",
+                        width: "1em",
                         border: "none",
                         margin: "0",
                         padding: "0",
-                        background: "red",
+                        background: "#FF0800",
+                        zIndex: "100",
                         borderRadius: "50%",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         color: "white",
                         marginTop: "-0.5em",
-                        marginLeft: "1.2em",
-                        fontSize: "0.7em",
+                        marginLeft: "0.7em",
                         fontWeight: "bold",
-                        outline: "none",
                       }}
                     >
-                      {count}
+                      <span
+                        style={
+                          count > 10
+                            ? { fontSize: "0.6em" }
+                            : { fontSize: "0.7em" }
+                        }
+                      >
+                        {count}
+                      </span>
                     </div>
                   ) : (
                     ""

@@ -59,7 +59,7 @@ const ProductPage = () => {
 
               <ListGroup.Item>{/* some data */}</ListGroup.Item>
               <ListGroup.Item>
-                <strong>Price: </strong>$ {product.price}
+                <strong>Price: </strong>$ {product.price.toFixed(2)}
               </ListGroup.Item>
               <ListGroup.Item>
                 <strong>Description:</strong> {product.description}
@@ -118,7 +118,7 @@ const ProductPage = () => {
                   <Row>
                     <Button
                       type="button"
-                      className="btn-block btn-lg btn-dark"
+                      className="btn-block btn-lg"
                       onClick={handleSubmit}
                       disabled={product.countInStock <= 0}
                     >

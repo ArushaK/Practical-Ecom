@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Form, Button, Row, InputGroup, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Row,
+  InputGroup,
+  Col,
+  FloatingLabel,
+} from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
@@ -54,118 +61,167 @@ const RegisterPage = () => {
 
   return (
     <FormContainer>
-      <div
-        style={{
-          display: "flex",
-          flexFlow: "row wrap",
-          alignItems: "center",
-        }}
-      >
-        <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/login")}>
-          Sign In
-        </h1>
-        <h1
-          style={{ marginLeft: "1em", cursor: "pointer" }}
-          onClick={() => navigate("/register")}
-        >
-          Sign Up
-        </h1>
+      <div className="form-inner-container">
+        <div className="form-heading">
+          <h1 onClick={() => navigate("/login")}>Sign In</h1>
+          <h1
+            style={{
+              background: "ghostwhite",
+              boxShadow: "0px 0px 9px 0px rgba(0, 0, 0, 0.2)",
+              WebkitBoxShadow: "0px 0px 9px 0px rgba(0, 0, 0, 0.2)",
+              MozBoxShadow: "0px 0px 9px 0px rgba(0, 0, 0, 0.2)",
+            }}
+            onClick={() => navigate("/register")}
+          >
+            Sign Up
+          </h1>
+        </div>
+        {message && (
+          <Message variant="warning" duration={10}>
+            {message}
+          </Message>
+        )}
+        {error && (
+          <Message variant="danger" duration={10}>
+            {error}
+          </Message>
+        )}
+        {loading ? (
+          <Loader />
+        ) : (
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="name" className="mb-2">
+              <FloatingLabel
+                controlId="nameinput"
+                label="Name"
+                className="mb-3"
+              >
+                <Form.Control
+                  size="lg"
+                  placeholder="Enter Name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </FloatingLabel>
+            </Form.Group>
+            <Form.Group controlId="email" className="my-2">
+              <FloatingLabel
+                controlId="emailinput"
+                label="Email Address"
+                className="mb-3"
+              >
+                <Form.Control
+                  size="lg"
+                  placeholder="Enter Email Address"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FloatingLabel>
+            </Form.Group>
+            <Form.Group>
+              <InputGroup>
+                <FloatingLabel
+                  controlId="passwordinput"
+                  label="Password"
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                  }}
+                  className="mb-3"
+                >
+                  <Form.Control
+                    size="lg"
+                    type={typePassword}
+                    placeholder="Enter your password"
+                    value={password}
+                    style={{
+                      borderRight: "none",
+                    }}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <div className="input-group-append">
+                    <InputGroup.Text
+                      onClick={showHidePassword}
+                      style={{
+                        fontSize: "1rem",
+                        height: "100%",
+                        marginLeft: "-0.5em",
+                        background: "transparent",
+                        borderLeft: "none",
+                      }}
+                    >
+                      {typePassword === "text" ? (
+                        <i className="far fa-eye-slash"></i>
+                      ) : (
+                        <i className="far fa-eye"></i>
+                      )}
+                    </InputGroup.Text>
+                  </div>
+                </FloatingLabel>
+              </InputGroup>
+            </Form.Group>
+            <Form.Group>
+              <InputGroup>
+                <FloatingLabel
+                  controlId="confirmpasswordinput"
+                  label="Confirm password"
+                  style={{ display: "flex", width: "100%" }}
+                  className="mb-3"
+                >
+                  <Form.Control
+                    size="lg"
+                    type={typeConfirmPassword}
+                    placeholder="Confirm your password"
+                    value={confirmPassword}
+                    style={{
+                      borderRight: "none",
+                    }}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  <div className="input-group-append">
+                    <InputGroup.Text
+                      onClick={showHideConfirmPassword}
+                      style={{
+                        fontSize: "1rem",
+                        height: "100%",
+                        marginLeft: "-0.5em",
+                        background: "transparent",
+                        borderLeft: "none",
+                      }}
+                    >
+                      {typeConfirmPassword === "text" ? (
+                        <i className="far fa-eye-slash"></i>
+                      ) : (
+                        <i className="far fa-eye"></i>
+                      )}
+                    </InputGroup.Text>
+                  </div>
+                </FloatingLabel>
+              </InputGroup>
+            </Form.Group>
+            <Row>
+              <Col
+                style={{
+                  display: "flex",
+                }}
+              >
+                <Button
+                  type="submit"
+                  className="ms-auto"
+                  style={{
+                    padding: "0.5em 1em",
+                    width: "8rem",
+                  }}
+                >
+                  Register
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        )}
       </div>
-      {message && <Message variant="warning">{message}</Message>}
-      {error && <Message variant="danger">{error}</Message>}
-      {loading ? (
-        <Loader />
-      ) : (
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="name" className="mb-2">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              size="lg"
-              placeholder="Enter Name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="email" className="my-2">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              size="lg"
-              placeholder="Enter Email Address"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="my-2">
-            <Form.Label>Password</Form.Label>
-            <InputGroup>
-              <Form.Control
-                size="lg"
-                type={typePassword}
-                placeholder="Enter your password"
-                value={password}
-                style={{ borderRight: "none" }}
-                onChange={(e) => setPassword(e.target.value)}
-              ></Form.Control>
-              <InputGroup.Text
-                id="basic-addon2"
-                onClick={showHidePassword}
-                style={{
-                  background: "transparent",
-                  borderLeft: "none",
-                  padding: "0.5em 0.5em 0.5em 0",
-                }}
-              >
-                {typePassword === "text" ? (
-                  <i className="far fa-eye-slash"></i>
-                ) : (
-                  <i className="far fa-eye"></i>
-                )}
-              </InputGroup.Text>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group className="my-2">
-            <Form.Label>Confirm Password</Form.Label>
-            <InputGroup className="mb-3">
-              <Form.Control
-                size="lg"
-                type={typeConfirmPassword}
-                placeholder="Confirm password"
-                value={confirmPassword}
-                style={{ borderRight: "none" }}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              ></Form.Control>
-              <InputGroup.Text
-                id="basic-addon2"
-                onClick={showHideConfirmPassword}
-                style={{
-                  background: "transparent",
-                  borderLeft: "none",
-                  padding: "0.5em 0.5em 0.5em 0",
-                }}
-              >
-                {typeConfirmPassword === "text" ? (
-                  <i className="far fa-eye-slash"></i>
-                ) : (
-                  <i className="far fa-eye"></i>
-                )}
-              </InputGroup.Text>
-            </InputGroup>
-          </Form.Group>
-          <Button type="submit" variant="dark" className="my-1">
-            Register
-          </Button>
-        </Form>
-      )}
-      {/* <Row>
-        <Col className="mt-1">
-          Have an Account?{" "}
-          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login
-          </Link>
-        </Col>
-      </Row> */}
     </FormContainer>
   );
 };

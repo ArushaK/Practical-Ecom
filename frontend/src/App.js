@@ -22,6 +22,7 @@ function App() {
             <HomePage />
             <Routes>
               <Route path="/" element={<HomePage />} exact />
+              <Route path="/search/:keyword" element={<HomePage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/product/:id" element={<ProductPage />} />

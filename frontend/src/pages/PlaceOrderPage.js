@@ -19,6 +19,7 @@ const PlaceOrderPage = () => {
 
   useEffect(() => {
     if (success) {
+      localStorage.removeItem("cartItems");
       dispatch({ type: CART_RESET, payload: shippingAddress });
       navigate(`/order/${order._id}`);
     }
@@ -150,7 +151,7 @@ const PlaceOrderPage = () => {
                   )}
                   <ListGroup.Item className="d-grid gap-2">
                     <Button
-                      variant="dark"
+                      // variant="dark"
                       type="button"
                       className="btn-block"
                       disabled={!cartItems.length}

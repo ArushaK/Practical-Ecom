@@ -76,7 +76,7 @@ const CartPage = () => {
                   <Col md={2}>
                     <Button
                       type="button"
-                      variant="dark"
+                      // variant="dark"
                       onClick={() => handleRemoveFromCart(item.product)}
                     >
                       <i className="fas fa-trash"></i>
@@ -104,7 +104,7 @@ const CartPage = () => {
             <ListGroup.Item>
               <Button
                 type="button"
-                variant="dark"
+                // variant="dark"
                 className="btn-block"
                 disabled={!cartItems.length}
                 onClick={handleCheckout}
