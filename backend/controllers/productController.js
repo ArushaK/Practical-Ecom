@@ -22,7 +22,9 @@ const getAllProducts = asyncHandler(async (req, res) => {
 // @route GET /api/products/:id
 // @access PUBLIC
 const getProductById = asyncHandler(async (req, res) => {
+  console.log(req.params.id);
   const product = await Product.findById(req.params.id);
+  console.log(product);
   if (product) res.json(product);
   else {
     // throw a custom error so that our error middleware can catch them and return apt json

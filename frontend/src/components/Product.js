@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../styles/product.css";
 
 const Product = (props) => {
   console.log(props.product);

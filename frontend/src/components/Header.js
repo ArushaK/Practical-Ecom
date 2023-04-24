@@ -5,6 +5,7 @@ import { logoutUser } from "../actions/userActions";
 import { listProducts } from "../actions/productActions";
 import { Link, Route, Routes } from "react-router-dom";
 import SearchBox from "./SearchBox";
+import "../styles/header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -53,47 +54,26 @@ const Header = () => {
             {/* </Routes> */}
             <Nav className="ms-auto">
               <Link to="/cart">
-                <Nav.Link>
-                  {count ? (
-                    <div
-                      style={{
-                        position: "absolute",
-                        height: "1em",
-                        width: "1em",
-                        border: "none",
-                        margin: "0",
-                        padding: "0",
-                        background: "#FF0800",
-                        zIndex: "100",
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "white",
-                        marginTop: "-0.5em",
-                        marginLeft: "0.7em",
-                        fontWeight: "bold",
-                      }}
+                {count ? (
+                  <div className="nav-cart-size">
+                    <span
+                      style={
+                        count > 10
+                          ? { fontSize: "0.6em" }
+                          : { fontSize: "0.7em" }
+                      }
                     >
-                      <span
-                        style={
-                          count > 10
-                            ? { fontSize: "0.6em" }
-                            : { fontSize: "0.7em" }
-                        }
-                      >
-                        {count}
-                      </span>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <i
-                    style={{ fontSize: "1.2em" }}
-                    className="fas fa-shopping-cart"
-                  ></i>
-                  Cart
-                </Nav.Link>
+                      {count}
+                    </span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <i
+                  style={{ fontSize: "1.2em" }}
+                  className="fas fa-shopping-cart"
+                ></i>
+                Cart
               </Link>
               {userInfo ? (
                 <NavDropdown
@@ -111,13 +91,8 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                 <Link to="/login" variant="primary">
-                  <Nav.Link>
-                    <i
-                      style={{ fontSize: "1.2em" }}
-                      className="fas fa-user"
-                    ></i>
-                    Sign In
-                  </Nav.Link>
+                  <i style={{ fontSize: "1.2em" }} className="fas fa-user"></i>
+                  Sign In
                 </Link>
               )}
             </Nav>

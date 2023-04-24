@@ -5,12 +5,14 @@ import { Carousel, CarouselItem, Image } from "react-bootstrap";
 import Loader from "./Loader";
 import Message from "./Message";
 import { listProducts } from "../actions/productActions";
+import "../styles/product-carousel.css";
 
 const ProductCarousel = () => {
   const dispatch = useDispatch();
 
-  const productTopRated = useSelector((state) => state.productTopRated);
-  const { error, loading, products } = productTopRated;
+  const productList = useSelector((state) => state.productList);
+  console.log(productList);
+  const { error, loading, products } = productList;
 
   useEffect(() => {
     dispatch(listProducts());

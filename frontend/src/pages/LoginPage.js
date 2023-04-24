@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import {
   Form,
@@ -15,9 +15,11 @@ import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { loginUser } from "../actions/userActions";
 import { USER_LOGIN_SUCCESS } from "../constants/userConstants";
+import "../styles/login-register.css";
 
 const LoginPage = () => {
   const location = useLocation();
+  const params = useParams();
   const navigate = useNavigate();
   const [type, setType] = useState("password");
   const [email, setEmail] = useState("");
@@ -26,14 +28,17 @@ const LoginPage = () => {
   const redirect = location.search ? location.search.split("=")[1] : "";
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, userInfo, error } = userLogin;
+  console.log(location);
 
   useEffect(() => {
     if (!location.search.includes("success") && userInfo) navigate(redirect);
   }, [redirect, location, userInfo]);
 
   useEffect(() => {
+    console.log(window.location.search);
     // check for url params
     if (window.location.search.includes("success")) {
+      console.log("yeaaaa");
       const queries = window.location.search.split("&");
       const isSuccess = queries[0].split("=")[1] === "success";
       const id = queries[1].split("=")[1];
@@ -59,7 +64,7 @@ const LoginPage = () => {
             });
             localStorage.setItem("userInfo", JSON.stringify(userData));
             localStorage.removeItem("promptEmailVerfication");
-            navigate("/shipping");
+            navigate("../shipping");
           });
       }
     }

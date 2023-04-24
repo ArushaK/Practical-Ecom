@@ -28,22 +28,24 @@ const HomePage = () => {
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
-      ) : products ? (
-        <Row>
-          {products.length ? (
-            products.map((product) => {
-              return (
-                <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-                  <Product product={product} />
-                </Col>
-              );
-            })
-          ) : (
-            <Col>No Items Found for this search query...</Col>
-          )}
-        </Row>
       ) : (
-        ""
+        products && (
+          <>
+            <Row>
+              {products.length ? (
+                products.map((product) => {
+                  return (
+                    <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
+                      <Product product={product} />
+                    </Col>
+                  );
+                })
+              ) : (
+                <Col>No items found for this search query...</Col>
+              )}
+            </Row>
+          </>
+        )
       )}
     </>
   );

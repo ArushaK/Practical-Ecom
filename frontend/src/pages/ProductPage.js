@@ -13,6 +13,7 @@ import {
 import { listProductDetails } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import "../styles/login-register.css";
 
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
@@ -21,6 +22,8 @@ const ProductPage = () => {
   const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
+  console.log(params);
+  console.log(productDetails);
   const { loading, product, error } = productDetails;
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const ProductPage = () => {
 
               <ListGroup.Item>{/* some data */}</ListGroup.Item>
               <ListGroup.Item>
-                <strong>Price: </strong>$ {product.price.toFixed(2)}
+                <strong>Price: </strong>$ {product.price}
               </ListGroup.Item>
               <ListGroup.Item>
                 <strong>Description:</strong> {product.description}

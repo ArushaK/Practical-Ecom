@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../styles/check-status.css";
 
 const CheckoutStatus = ({ step1, step2, step3, step4 }) => {
   return (

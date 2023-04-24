@@ -27,10 +27,12 @@ export const productDetailsReducers = (
   state = { product: { reviews: [] } },
   action
 ) => {
+  console.log(action.type);
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true, ...state };
     case PRODUCT_DETAILS_SUCCESS:
+      console.log(action);
       return { loading: false, product: action.payload };
     case PRODUCT_DETAILS_FAILURE:
       return { loading: false, error: action.payload };

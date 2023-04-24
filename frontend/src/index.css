@@ -61,6 +61,24 @@ h2 {
   margin: 0.1rem;
 }
 
+.nav-cart-size {
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  top: 25%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.1em;
+  border-radius: 50%;
+  background: #ff0800;
+  margin: 0;
+  margin-left: 0.8em;
+  font-weight: bold;
+}
+
 /* Carousel */
 .carousel-item-next,
 .carousel-item-prev,
@@ -112,8 +130,8 @@ h2 {
   color: #212529;
 }
 .footer-icon {
-  font-size: 1.5em;
-  line-height: 1em;
+  font-size: 1.2em;
+  line-height: 1.2em;
   object-fit: cover;
   transform: translateY(0);
   transition: transform 0.3s ease-in-out;

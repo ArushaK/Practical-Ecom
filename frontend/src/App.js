@@ -19,7 +19,6 @@ function App() {
         <Header />
         <main className="py-2">
           <Container>
-            <HomePage />
             <Routes>
               <Route path="/" element={<HomePage />} exact />
               <Route path="/search/:keyword" element={<HomePage />} />
